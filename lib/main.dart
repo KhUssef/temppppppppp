@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/details_screen.dart';
+import 'package:flutter_application_1/intro_screen.dart';
 import 'package:flutter_application_1/models/book.dart';
 import 'package:flutter_application_1/signup_screen.dart';
 import 'package:flutter_application_1/widget/bottom_navbar.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
           ),
           themeMode: currentMode,
           home: const SignupScreen(),
+          // home: const IntroScreen(),
           routes: {
             '/details': (context) {
               final book = ModalRoute.of(context)!.settings.arguments as Book;

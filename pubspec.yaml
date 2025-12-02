@@ -39,9 +39,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   dio: ^5.9.0
   retrofit: ^4.6.0
-  shared_preferences: ^2.1.0  
-  sqflite: ^2.4.2
-  path: ^1.9.1
+  http: ^1.6.0
 
 dev_dependencies:
   flutter_test:
