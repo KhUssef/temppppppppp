@@ -3,6 +3,7 @@ import 'package:flutter_application_1/home.dart';
 import 'package:flutter_application_1/library_screen.dart';
 import 'package:flutter_application_1/widget/drawer.dart';
 import 'package:flutter_application_1/widget/theme_controller.dart';
+import 'package:flutter_application_1/basket_screen.dart';
 
 class MyTabBar extends StatefulWidget {
   const MyTabBar({super.key});
@@ -69,13 +70,4 @@ class _MyTabBarState extends State<MyTabBar> with TickerProviderStateMixin {
   }
 
 }
-class BasketScreen extends StatelessWidget {
-  const BasketScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Basket Screen"),
-    );
-  }
-}
+// Uses real BasketScreen from lib/basket_screen.dart

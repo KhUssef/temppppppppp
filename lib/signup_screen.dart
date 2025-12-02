@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widget/Custom_Input_Decoration.dart';
+import 'package:flutter_application_1/models/user.dart';
+import 'package:flutter_application_1/services/user_service.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -114,20 +116,48 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 if (currentKey.currentState!.validate()) {
                   currentKey.currentState!.save();
+
+                  // create a User and save it via UserService
+                  final user = User(email: email, fullName: username);
+                  try {
+                    await UserService().saveCurrentUser(user);
+                  } catch (e) {
+                    // if saving fails, show an error and return
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Failed to save user: $e')),
+                    );
+                    return;
+                  }
+
+                  // Quick verification: read back from SharedPreferences
+                  final check = await UserService().getCurrentUser();
+                  if (check != null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Saved: ${check.email} | ${check.fullName}',
+                        ),
+                        duration: const Duration(seconds: 2),
+                      ),
+                    );
+                  }
+
+                  // show confirmation dialog; close it before navigating
                   showDialog(
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text("SignUp"),
-                        content: Text(
+                        title: const Text("SignUp"),
+                        content: const Text(
                           "User added successfully! check your inbox",
                         ),
                         actions: [
                           TextButton(
                             onPressed: () {
+                              Navigator.of(context).pop(); // close dialog
                               Navigator.pushNamed(context, '/bottombar');
                             },
                             child: const Text("OK"),
@@ -138,7 +168,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   );
                 }
               },
-              child: Text('Submit'),
+              child: const Text('Submit'),
             ),
           ],
         ),

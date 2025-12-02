@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/book.dart';
+import 'package:flutter_application_1/services/book_service.dart';
 
 class DetailsScreen extends StatefulWidget {
   final Book book;
@@ -78,6 +79,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 if (widget.book.quantity > 0) {
                   widget.book.quantity -= 1;
                 }
+              });
+              // Add selected book to SQLite basket
+              BookService()
+                  .insertBook(widget.book)
+                  .then((_) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Added to basket')),
+                );
+              }).catchError((e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Failed to add: $e')),
+                );
               });
               
             },

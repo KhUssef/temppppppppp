@@ -3,6 +3,7 @@ import 'package:flutter_application_1/details_screen.dart';
 import 'package:flutter_application_1/models/book.dart';
 import 'package:flutter_application_1/signup_screen.dart';
 import 'package:flutter_application_1/widget/bottom_navbar.dart';
+import 'package:flutter_application_1/basket_screen.dart';
 import 'package:flutter_application_1/widget/tap_bar.dart';
 import 'package:flutter_application_1/widget/theme_controller.dart';
 void main() {
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
             },
             '/tapbar': (context) => const MyTabBar(),
             '/bottombar': (context) => const BottomNavbar(),
+            '/basket': (context) => const BasketScreen(),
           },
         );
       },
@@ -126,3 +128,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
