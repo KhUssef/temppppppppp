@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home.dart';
 import 'package:flutter_application_1/library_screen.dart';
 import 'package:flutter_application_1/widget/drawer.dart';
+import 'package:flutter_application_1/basket_screen.dart';
 
 class BottomNavbar extends StatefulWidget {
   const BottomNavbar({super.key});
@@ -56,13 +57,4 @@ class _BottomNavbarState extends State<BottomNavbar> {
   }
 }
 
-class BasketScreen extends StatelessWidget {
-  const BasketScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Basket Screen"),
-    );
-  }
-}
+// Uses real BasketScreen from lib/basket_screen.dart
