@@ -19,8 +19,18 @@ class _BasketScreenState extends State<BasketScreen> {
           IconButton(
             icon: const Icon(Icons.delete_forever),
             onPressed: () async {
+              // Re-add all basket items back to inventory, then clear DB
+              final items = await BookService().fetchBasketBooks();
+              for (final b in items) {
+                BookService().reAddToInventory(b);
+              }
               await BookService().clearAll();
-              setState(() {});
+              if (mounted) {
+                setState(() {});
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Basket cleared and stock restored.')),
+                );
+              }
             },
           ),
         ],
